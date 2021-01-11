@@ -1,8 +1,15 @@
 import { useState } from "react";
-import { Navbar, Form, FormControl, Dropdown } from "react-bootstrap";
+import { Navbar, Form, FormControl } from "react-bootstrap";
 import SuggestionInput from "./SuggestionInput";
-
-function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt, sgstnList, setSgstnList }) {
+/**
+ * 導航列
+ * @param {Object} storeList 原始資料
+ * @param {Object} resultList 以篩選資料
+ * @param {Function} setResultList 設定篩選資料
+ * @param {String} searchTxt 搜尋項目文字
+ * @param {Function} setSearchTxt 設定文字
+ */
+function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt }) {
 	// 紀錄以名稱篩選的項目用以建立建議清單
 	const [sortedByName, setSortedByName] = useState([]);
 	// search 輸入框事件

@@ -6,8 +6,10 @@ const style = {
 	"zIndex": 999
 }
 /**
- * 
+ * 建立建議項目
  * @param {Object} list 
+ * @param {String} searchTxt 
+ * @return {React Element}
  */
 function SuggestionInput({ searchTxt, list }) {
 

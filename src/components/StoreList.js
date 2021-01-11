@@ -1,6 +1,11 @@
 import { CardColumns, Card } from "react-bootstrap";
-
-
+/**
+ * 建立項目列表
+ * @param {String} searchTxt 搜尋文字
+ * @param {Object} storeList 原始資料
+ * @param {Object} resultList 以篩選資料
+ * @param {React Element}
+ */
 function StoreList({ searchTxt, storeList, resultList }) {
 	const storeListArr = Object.keys(storeList)
 	const resultListArr = Object.keys(resultList)
@@ -18,7 +23,11 @@ function StoreList({ searchTxt, storeList, resultList }) {
 		</CardColumns>
 	)
 }
-
+/**
+ * 建立項目
+ * @param {String} key 資料中的key值
+ * @param {Object} resultList 以篩選資料
+ */
 function cardTemplate({ key, resultList }) {
 	const info = resultList[key];
 	const { detail, item } = info;
@@ -28,8 +37,9 @@ function cardTemplate({ key, resultList }) {
 			<Card.Body>
 				<Card.Title>{item.name}</Card.Title>
 				<Card.Text>
-					<div dangerouslySetInnerHTML={{ __html: detail.desc }}>
-					</div>
+					{
+						(detail.desc) ? <div dangerouslySetInnerHTML={{ __html: detail.desc }} /> : null
+					}
 				</Card.Text>
 			</Card.Body>
 		</Card>

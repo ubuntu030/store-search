@@ -2,12 +2,9 @@ import { useState, useEffect } from "react";
 import NaviBar from "./NaviBar";
 import StoreList from "./StoreList";
 
-import { Button } from "react-bootstrap";
 function Store() {
 	// 搜尋欄位，接受名稱 & id
 	const [searchTxt, setSearchTxt] = useState('');
-	// 用以輸入時顯示建議值
-	const [sgstnList, setSgstnList] = useState([]);
 	// 輸入時顯示篩選結果
 	const [resultList, setResultList] = useState({});
 	// data from json
@@ -28,13 +25,11 @@ function Store() {
 				storeList={storeList}
 				resultList={resultList} setResultList={setResultList}
 				searchTxt={searchTxt} setSearchTxt={setSearchTxt}
-				sgstnList={sgstnList} setSgstnList={setSgstnList}
 			/>
 			<StoreList searchTxt={searchTxt} storeList={storeList} resultList={resultList} />
 		</div>
 	)
 }
-
 
 // 取得商店資料
 async function getStoreData() {
