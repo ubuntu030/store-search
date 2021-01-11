@@ -1,5 +1,5 @@
 import { Navbar, Form, FormControl, Button } from "react-bootstrap";
-
+// FIXME: storeListSort 需要有初始化，當前只有handleChange 能觸發
 function NaviBar({ storeList, setResultList, searchTxt, setSearchTxt, sgstnList, setSgstnList }) {
 	const handleChange = (e) => {
 		const value = e.target.value;
@@ -49,7 +49,7 @@ function storeListSort({ keyword, storeList }) {
 	if (!keyword && storeListArr.length > 0) {
 		return storeList;
 	}
-	return {};
+	return storeList;
 }
 
 export default NaviBar;
