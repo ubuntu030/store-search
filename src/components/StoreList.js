@@ -16,14 +16,15 @@ function StoreList({ resultList }) {
 
 function cardTemplate({ key, resultList }) {
 	const info = resultList[key];
-	const { detail } = info;
+	const { detail, item } = info;
 	let template = (
-		<Card>
+		<Card key={key}>
 			<Card.Img variant="top" src={detail.image} />
 			<Card.Body>
-				<Card.Title>{detail.name}</Card.Title>
+				<Card.Title>{item.name}</Card.Title>
 				<Card.Text>
-					{detail.desc}
+					<div dangerouslySetInnerHTML={{ __html: detail.desc }}>
+					</div>
 				</Card.Text>
 			</Card.Body>
 		</Card>
