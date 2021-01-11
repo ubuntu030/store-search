@@ -5,8 +5,9 @@ function NaviBar({ storeList, setResultList, searchTxt, setSearchTxt, sgstnList,
 		const value = e.target.value;
 		setSearchTxt(value);
 		const sortedData = storeListSort({ keyword: value, storeList });
-		console.log('d', sortedData);
-		console.log('a', Object.keys(sortedData).length);
+		setResultList(sortedData);
+		// console.log('d', sortedData);
+		// console.log('a', Object.keys(sortedData).length);
 	}
 
 	return (
@@ -39,7 +40,7 @@ function storeListSort({ keyword, storeList }) {
 			}
 			// check name
 			if (storeList[key] && storeList[key].item.name.includes(keyword)) {
-				sortedObj.key = storeList.key;
+				sortedObj[key] = storeList[key];
 			}
 		});
 		return sortedObj;
