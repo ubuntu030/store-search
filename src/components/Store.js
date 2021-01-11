@@ -31,7 +31,6 @@ function Store() {
 				sgstnList={sgstnList} setSgstnList={setSgstnList}
 			/>
 			<StoreList searchTxt={searchTxt} storeList={storeList} resultList={resultList} />
-			<Button onClick={() => { console.log(storeList); }}>get</Button>
 		</div>
 	)
 }

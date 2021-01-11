@@ -1,13 +1,16 @@
-import { Navbar, Form, FormControl, Button } from "react-bootstrap";
-// FIXME: storeListSort 需要有初始化，當前只有handleChange 能觸發
+import { useState } from "react";
+import { Navbar, Form, FormControl, Dropdown } from "react-bootstrap";
+import SuggestionInput from "./SuggestionInput";
+
 function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt, sgstnList, setSgstnList }) {
+	// 紀錄以名稱篩選的項目用以建立建議清單
+	const [sortedByName, setSortedByName] = useState([]);
+	// search 輸入框事件
 	const handleChange = (e) => {
 		const value = e.target.value;
 		setSearchTxt(value);
-		const sortedData = storeListSort({ keyword: value, storeList });
+		const sortedData = storeListSort({ keyword: value, storeList, setSortedByName });
 		setResultList(sortedData);
-		// console.log('d', sortedData);
-		// console.log('a', Object.keys(sortedData).length);
 	}
 
 	return (
@@ -18,6 +21,7 @@ function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt
 			</Navbar.Text>
 			<Form inline>
 				<FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTxt} onChange={handleChange} />
+				<SuggestionInput searchTxt={searchTxt} list={sortedByName} />
 			</Form>
 		</Navbar>
 	)
@@ -26,10 +30,12 @@ function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt
  * 整理資料並返回
  * @param {String} keyword 關鍵字
  * @param {Object} storeList 原始資料
+ * @param {Function} setSortedByName 寫入以名字為篩選的項目
  * @return {Object} 
  */
-function storeListSort({ keyword, storeList }) {
+function storeListSort({ keyword, storeList, setSortedByName }) {
 	const storeListArr = Object.keys(storeList);
+	let nameSorting = {};
 
 	if (keyword && storeListArr.length > 0) {
 		// sorted by Name & ID
@@ -43,8 +49,11 @@ function storeListSort({ keyword, storeList }) {
 			// check name
 			if (storeList[key] && storeList[key].item.name.includes(keyword)) {
 				sortedObj[key] = storeList[key];
+				// 建立用以產生建議列表的資料
+				nameSorting[key] = storeList[key];
 			}
 		});
+		setSortedByName(nameSorting);
 		return sortedObj;
 	}
 	// 若有資料 無關鍵字 返回整張資料
