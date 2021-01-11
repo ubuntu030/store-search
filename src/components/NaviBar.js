@@ -1,6 +1,6 @@
 import { Navbar, Form, FormControl, Button } from "react-bootstrap";
 // FIXME: storeListSort 需要有初始化，當前只有handleChange 能觸發
-function NaviBar({ storeList, setResultList, searchTxt, setSearchTxt, sgstnList, setSgstnList }) {
+function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt, sgstnList, setSgstnList }) {
 	const handleChange = (e) => {
 		const value = e.target.value;
 		setSearchTxt(value);
@@ -13,10 +13,12 @@ function NaviBar({ storeList, setResultList, searchTxt, setSearchTxt, sgstnList,
 	return (
 		<Navbar bg="dark" variant="dark">
 			<Navbar.Brand href="#home" className="mr-auto">Store</Navbar.Brand>
+			<Navbar.Text>
+				共有{Object.keys(resultList).length}間商店
+			</Navbar.Text>
 			<Form inline>
 				<FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTxt} onChange={handleChange} />
 			</Form>
-			<Button onClick={() => { console.log(storeList); }}>get</Button>
 		</Navbar>
 	)
 }

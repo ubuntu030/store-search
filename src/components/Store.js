@@ -22,7 +22,7 @@ function Store() {
 		});
 	}, []);
 
-	
+
 
 
 
@@ -30,12 +30,12 @@ function Store() {
 		<div>
 			<NaviBar
 				storeList={storeList}
-				setResultList={setResultList}
+				resultList={resultList} setResultList={setResultList}
 				searchTxt={searchTxt} setSearchTxt={setSearchTxt}
 				sgstnList={sgstnList} setSgstnList={setSgstnList}
 			/>
 			<StoreList resultList={resultList} />
-		<Button onClick={()=> {console.log(storeList);}}>get</Button>
+			<Button onClick={() => { console.log(storeList); }}>get</Button>
 		</div>
 	)
 }
