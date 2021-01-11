@@ -14,7 +14,7 @@ function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt
 		<Navbar bg="dark" variant="dark">
 			<Navbar.Brand href="#home" className="mr-auto">Store</Navbar.Brand>
 			<Navbar.Text>
-				共有{Object.keys(resultList).length}間商店
+				共有{numbOfStore({ searchTxt, storeList, resultList })}間商店
 			</Navbar.Text>
 			<Form inline>
 				<FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTxt} onChange={handleChange} />
@@ -52,6 +52,24 @@ function storeListSort({ keyword, storeList }) {
 		return storeList;
 	}
 	return storeList;
+}
+/**
+ * 返回商店數量
+ * @param {String} searchTxt 
+ * @param {Object} storeList 
+ * @param {Object} resultList 
+ * @return {Number}
+ */
+function numbOfStore({ searchTxt, storeList, resultList }) {
+	let num = 0;
+	const storeListArr = Object.keys(storeList);
+	const resultListArr = Object.keys(resultList);
+	if (searchTxt === '') {
+		num = storeListArr.length;
+	} else {
+		num = resultListArr.length;
+	}
+	return num;
 }
 
 export default NaviBar;
