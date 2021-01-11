@@ -9,9 +9,9 @@ function Store() {
 	// 用以輸入時顯示建議值
 	const [sgstnList, setSgstnList] = useState([]);
 	// 輸入時顯示篩選結果
-	const [resultList, setResultList] = useState([]);
+	const [resultList, setResultList] = useState({});
 	// data from json
-	const [storeList, setStoreList] = useState(null);
+	const [storeList, setStoreList] = useState({});
 
 	useEffect(() => {
 		getStoreData().then((data) => {
@@ -22,10 +22,6 @@ function Store() {
 		});
 	}, []);
 
-
-
-
-
 	return (
 		<div>
 			<NaviBar
@@ -34,7 +30,7 @@ function Store() {
 				searchTxt={searchTxt} setSearchTxt={setSearchTxt}
 				sgstnList={sgstnList} setSgstnList={setSgstnList}
 			/>
-			<StoreList resultList={resultList} />
+			<StoreList searchTxt={searchTxt} storeList={storeList} resultList={resultList} />
 			<Button onClick={() => { console.log(storeList); }}>get</Button>
 		</div>
 	)

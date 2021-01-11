@@ -1,13 +1,18 @@
 import { CardColumns, Card } from "react-bootstrap";
 
 
-function StoreList({ resultList }) {
+function StoreList({ searchTxt, storeList, resultList }) {
+	const storeListArr = Object.keys(storeList)
+	const resultListArr = Object.keys(resultList)
+	// 判斷並使用預設資料
+	const listArr = (searchTxt === '' && resultListArr.length === 0) ? storeListArr : resultListArr;
+	const list = (resultListArr.length === 0) ? storeList : resultList
 
 	return (
 		<CardColumns>
 			{
-				Object.keys(resultList).map(key => {
-					return cardTemplate({ key, resultList });
+				listArr.map(key => {
+					return cardTemplate({ key, resultList: list });
 				})
 			}
 		</CardColumns>
