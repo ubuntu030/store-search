@@ -1,4 +1,6 @@
+import LazyLoad from "react-lazyload";
 import { CardColumns, Card } from "react-bootstrap";
+
 /**
  * 建立項目列表
  * @param {String} searchTxt 搜尋文字
@@ -35,7 +37,9 @@ function cardTemplate({ key, resultList }) {
 	const { detail, item } = info;
 	let template = (
 		<Card key={key}>
-			<Card.Img variant="top" src={detail.image} />
+			<LazyLoad>
+				<Card.Img variant="top" src={detail.image} />
+			</LazyLoad>
 			<Card.Body>
 				<Card.Title>{item.name}</Card.Title>
 				<Card.Text>
