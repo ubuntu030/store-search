@@ -29,7 +29,10 @@ function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt
 			</Navbar.Text>
 			<Form inline>
 				<FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTxt} onChange={handleChange} />
-				<CleanButton isDisplay={!!searchTxt} cleanFn={() => setSearchTxt('')} />
+				<CleanButton
+					isDisplay={!!searchTxt}
+					setSearchTxt={setSearchTxt} setResultList={setResultList}
+					getSortData={() => storeListSort({ keyword: '', storeList, setSortedByName })} />
 				<SuggestionInput searchTxt={searchTxt} list={sortedByName} />
 			</Form>
 		</Navbar>
@@ -92,9 +95,11 @@ function numbOfStore({ searchTxt, storeList, resultList }) {
 /**
  * 清除搜尋的按鈕
  * @param {Boolean} isDisplay 是否顯示
- * @param {Function} cleanFn 清除函式
+ * @param {Function} setSearchTxt 清除搜尋欄
+ * @param {Function} getSortData 取得排列資料
+ * @param {Function} setResultList 設定以排列排列資料
  */
-function CleanButton({ isDisplay, cleanFn }) {
+function CleanButton({ isDisplay, setSearchTxt, setResultList, getSortData }) {
 	const iconStyle = {
 		"height": "30px",
 		"width": "30px",
@@ -102,9 +107,13 @@ function CleanButton({ isDisplay, cleanFn }) {
 		"right": "24px",
 		"cursor": "pointer"
 	};
+	const handleClick = () => {
+		setSearchTxt('');
+		setResultList(getSortData());
+	}
 	return (
 		(isDisplay === true) ?
-			< Image src="ic_close@2x.png" style={iconStyle} onClick={cleanFn} roundedCircle />
+			< Image src="ic_close@2x.png" style={iconStyle} onClick={handleClick} roundedCircle />
 			: null
 	)
 }
