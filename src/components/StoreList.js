@@ -37,7 +37,7 @@ function cardTemplate({ key, resultList }) {
 	const { detail, item } = info;
 	let template = (
 		<Card key={key}>
-			<LazyLoad>
+			<LazyLoad height={200} once >
 				<Card.Img variant="top" src={detail.image} />
 			</LazyLoad>
 			<Card.Body>
