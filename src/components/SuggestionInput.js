@@ -3,7 +3,9 @@ import { ListGroup } from "react-bootstrap";
 const style = {
 	"position": "absolute",
 	"top": "46px",
-	"zIndex": 999
+	"zIndex": 999,
+	"overflowY": "auto",
+	"height": "500px"
 }
 /**
  * 建立建議項目

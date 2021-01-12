@@ -9,6 +9,8 @@ import { CardColumns, Card } from "react-bootstrap";
 function StoreList({ searchTxt, storeList, resultList }) {
 	const storeListArr = Object.keys(storeList)
 	const resultListArr = Object.keys(resultList)
+	console.log("storeListArr", storeListArr.length);
+	console.log("resultListArr", resultListArr.length);
 	// 判斷並使用預設資料
 	const listArr = (searchTxt === '' && resultListArr.length === 0) ? storeListArr : resultListArr;
 	const list = (resultListArr.length === 0) ? storeList : resultList

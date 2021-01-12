@@ -1,6 +1,7 @@
 import { useState } from "react";
-import { Navbar, Form, FormControl } from "react-bootstrap";
+import { Navbar, Form, FormControl, Image } from "react-bootstrap";
 import SuggestionInput from "./SuggestionInput";
+
 /**
  * 導航列
  * @param {Object} storeList 原始資料
@@ -28,6 +29,7 @@ function NaviBar({ storeList, resultList, setResultList, searchTxt, setSearchTxt
 			</Navbar.Text>
 			<Form inline>
 				<FormControl type="text" placeholder="Search" className="mr-sm-2" value={searchTxt} onChange={handleChange} />
+				<CleanButton isDisplay={!!searchTxt} cleanFn={() => setSearchTxt('')} />
 				<SuggestionInput searchTxt={searchTxt} list={sortedByName} />
 			</Form>
 		</Navbar>
@@ -86,6 +88,25 @@ function numbOfStore({ searchTxt, storeList, resultList }) {
 		num = resultListArr.length;
 	}
 	return num;
+}
+/**
+ * 清除搜尋的按鈕
+ * @param {Boolean} isDisplay 是否顯示
+ * @param {Function} cleanFn 清除函式
+ */
+function CleanButton({ isDisplay, cleanFn }) {
+	const iconStyle = {
+		"height": "30px",
+		"width": "30px",
+		"position": "absolute",
+		"right": "24px",
+		"cursor": "pointer"
+	};
+	return (
+		(isDisplay === true) ?
+			< Image src="ic_close@2x.png" style={iconStyle} onClick={cleanFn} roundedCircle />
+			: null
+	)
 }
 
 export default NaviBar;
